@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmths0l5w6ejo"]
+
+[ext_resource type="Texture2D" uid="uid://etip2reflya8" path="res://Scenes/abilities/sword_ability/sword.png" id="1_4rkct"]
+[ext_resource type="Script" path="res://Scenes/abilities/sword_ability/sword_ability.gd" id="1_h5eui"]
+[ext_resource type="Animation" uid="uid://b0x0h7dpp2egm" path="res://animations/swingg.res" id="2_ew7hf"]
+[ext_resource type="PackedScene" uid="uid://djs5w0u1ofqvp" path="res://Scenes/Component/hit_box_component.tscn" id="3_18qpp"]
+
+[sub_resource type="Animation" id="Animation_gssuu"]
+resource_name = "idk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v1qtx"]
+_data = {
+"idk": SubResource("Animation_gssuu"),
+"swingg": ExtResource("2_ew7hf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0ml1"]
+size = Vector2(28, 27)
+
+[node name="SwordAbility" type="Node2D"]
+script = ExtResource("1_h5eui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+rotation = -0.0872665
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_4rkct")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v1qtx")
+}
+autoplay = "swingg"
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_18qpp")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(14, -8.5)
+shape = SubResource("RectangleShape2D_r0ml1")
+disabled = true

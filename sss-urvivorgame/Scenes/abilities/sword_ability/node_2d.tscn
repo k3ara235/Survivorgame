@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://hkiobcoibejr"]
+
+[ext_resource type="Texture2D" uid="uid://etip2reflya8" path="res://Scenes/abilities/sword_ability/sword.png" id="1_0c632"]
+
+[sub_resource type="Animation" id="Animation_0w7q5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nvfai"]
+resource_name = "swingg"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00465134, 0.248848, 0.506998, 0.695378),
+"transitions": PackedFloat32Array(1, 1, 2, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00232568, 0.220935, 0.425599, 0.611654, 0.7279),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 4),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orned"]
+_data = {
+"RESET": SubResource("Animation_0w7q5"),
+"swingg": SubResource("Animation_nvfai")
+}
+
+[node name="SwordAbility" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_orned")
+}
+autoplay = "swingg"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_0c632")
